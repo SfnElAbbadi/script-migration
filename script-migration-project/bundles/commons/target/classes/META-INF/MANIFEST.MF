@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1524149102900
+Build-Jdk: 1.8.0_161
+Built-By: user
+Bundle-Category: aem-samle-project
+Bundle-Description: Parent pom for an AEM project, containing mainly plu
+ gin configurations.
+Bundle-ManifestVersion: 2
+Bundle-Name: AEM Sample Project :: Commons Bundle
+Bundle-SymbolicName: net.distilledcode.aem.samples.aem-sample-project-co
+ mmons
+Bundle-Vendor: AEM Sample Project
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: net.distilledcode.aem.samples.commons;version="1.0.0"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-2.3.0.201405100607

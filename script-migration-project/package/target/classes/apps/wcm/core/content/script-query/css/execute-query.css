@@ -1,0 +1,241 @@
+/*************************************************************************
+ *
+ * ADOBE CONFIDENTIAL
+ * __________________
+ *
+ *  Copyright 2015 Adobe Systems Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Adobe Systems Incorporated and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Adobe Systems Incorporated and its
+ * suppliers and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe Systems Incorporated.
+ **************************************************************************/
+
+/* Pop up css style  */
+
+
+.granite-popup-oper{
+
+    float: left;
+    padding-top: 27px;
+
+}
+
+#granite-popup-add{
+
+    border: 1px solid;
+    border-radius: 0;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    cursor: pointer;
+    padding: 9.21px 5px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+#granite-popup-rem{
+
+    border: 1px solid;
+    border-radius: 0;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    cursor: pointer;
+    padding: 9.21px 5px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+#granite-popup-add:hover{
+
+    background-color: #d0d0d0;
+
+}
+
+#granite-popup-rem:hover{
+
+    background-color: #d0d0d0;
+
+}
+
+.added-property{
+	margin-bottom: 7px;
+}
+.added-property .add-element{
+	border: 1px solid;
+    border-radius: 0;
+    padding: 8px;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: top;
+    font-size: .8125rem;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    width: 26%;
+    display: inline-block;
+    margin-right: 2.2%;
+}
+
+.added-property-rem{
+    clear: both;
+	margin-bottom: 7px;
+}
+.added-property-rem .add-element-rem{
+	border: 1px solid;
+    border-radius: 0;
+    padding: 8px;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: top;
+    font-size: .8125rem;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    width: 26%;
+    display: inline-block;
+    margin-right: 2.2%;
+}
+
+.added-property .remove-property{
+	border: 1px solid;
+    border-radius: 0;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    cursor: pointer;
+    padding: 8px 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.rem-property{
+	border: 1px solid;
+    border-radius: 0;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    cursor: pointer;
+    padding: 8px 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.added-property-rem .remove-property{
+	border: 1px solid;
+    border-radius: 0;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.0625rem;
+    border-color: #d0d0d0;
+    background-color: #fff;
+    color: #323232;
+    cursor: pointer;
+    padding: 8px 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.granite-execute-query .coral-Form-fieldset{
+	 overflow: visible;
+}
+
+.granite-execute-query .coral-Form-fieldwrapper {
+    float: left;
+    margin-right: 10px;
+	width: 29.83%;
+}
+
+.granite-execute-query .coral-Form-fieldset:first-child .coral-Form-fieldwrapper {
+    float: none;
+    margin-right: 0;
+    width: auto;
+}
+
+.granite-execute-query .coral-Form-fieldset{
+	display: none;
+ }
+
+.granite-execute-query .coral-Form-fieldset:first-child{
+	display: block;
+ }
+
+
+/* --- Explain Query Page --- */
+
+.granite-explain-hidden {
+    display: none !important;
+}
+
+.granite-explain-section span {
+    white-space: pre-wrap;
+    line-height: 1.25rem;
+}
+
+.granite-explain-section .coral-Well h4 {
+    margin-top: 0rem;
+    margin-bottom: .25rem;
+}
+
+.granite-explain-section ul {
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.granite-explain-spinner.coral-Wait {
+    margin-right: 0.5rem;
+}
+
+.granite-explain-modal .coral-Dialog-content {
+    height: -webkit-calc(100% - 116px);
+    height: calc(100% - 116px);
+}
+
+#queryExplanationContainer {
+    overflow: auto;
+    max-height: 100%;
+}
+
+#explainQueryButton {
+    margin-top: .625rem;
+}
+/* --- Explain Query Page end --- */

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM - Admin Page"
+        sling:resourceType="/libs/cq/gui/components/siteadmin/admin/createpagewizard/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/admin/page/viewport"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[coralui3,granite.ui.coral.foundation,granite.explain.query]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/page/body">
+            <items jcr:primaryType="nt:unstructured">
+                <form
+                    granite:class="granite-execute-query"
+                    granite:comment="We set &quot;novalidate&quot; = true as the wizard is doing validation already, to avoid double validation"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                    action="/bin/queryservlet"
+                    foundationForm="{Boolean}false"
+                    maximized="{Boolean}true"
+                    method="get"
+                    novalidate="{Boolean}true"
+                    style="vertical">
+                    <successresponse
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Success"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/responses/openprompt"
+                        open="/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path={Path}"
+                        redirect="/apps/wcm/core/content/sites/script.html"
+                        text="Nodes have been updated."/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <charset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            name="_charset_"
+                            value="utf-8"/>
+                        <parentPath
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            name="parentPath"
+                            value="${requestPathInfo.suffix}"/>
+                        <wizard
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Create Page"
+                            sling:resourceType="granite/ui/components/coral/foundation/wizard"
+                            cancelHref="${empty header.Referer ? granite:concat(&quot;/sites.html&quot;, granite:encodeURIPath(requestPathInfo.suffix)) : header.Referer}">
+                            <items jcr:primaryType="nt:unstructured">
+                                <query
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Query"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <fixedcolumns
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column-properties
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <section
+                                                            jcr:primaryType="nt:unstructured"
+                                                            jcr:title="SQL Query"
+                                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <search-path
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                                    fieldLabel="Search path :"
+                                                                    name="searchPath"
+                                                                    required="true"
+                                                                    rootPath="/content"/>
+                                                                <querytype
+                                                                    granite:id="granite-select-type"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Language"
+                                                                    name="querytype"
+                                                                    required="true">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <sql
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="SQL"
+                                                                            value="SQL"/>
+                                                                        <SQL2
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="JCR_SQL2"
+                                                                            value="JCR_SQL2"/>
+                                                                        <xpath
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="XPATH"
+                                                                            value="XPATH"/>
+                                                                    </items>
+                                                                </querytype>
+                                                                <query
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                                    fieldLabel="Query :"
+                                                                    name="query"
+                                                                    required="true"/>
+                                                                <operations
+                                                                    granite:class="granite-select-oper"
+                                                                    granite:id="granite-select-oper"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                                                                    fieldLabel="Operation"
+                                                                    name="operation"
+                                                                    required="{Boolean}true"
+                                                                    vertical="{Boolean}false">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <add-modify
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/form/radio"
+                                                                            checked="{Boolean}false"
+                                                                            text="Add / Modify"
+                                                                            value="add-modify"/>
+                                                                        <remove
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/form/radio"
+                                                                            text="Remove"
+                                                                            value="remove"/>
+                                                                    </items>
+                                                                </operations>
+                                                            </items>
+                                                            <parentConfig jcr:primaryType="nt:unstructured">
+                                                                <next
+                                                                    granite:class="foundation-wizard-control"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/button"
+                                                                    disabled="{Boolean}false"
+                                                                    text="Create"
+                                                                    type="submit"
+                                                                    variant="primary"/>
+                                                            </parentConfig>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                foundation-wizard-control-action="next"/>
+                                                        </section>
+                                                        <add-section
+                                                            granite:class="granite-add-section"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                                            name="granite-add-section">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <propertyname
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Name :"
+                                                                    name="property-name"/>
+                                                                <propertytype
+                                                                    granite:class="select-type"
+                                                                    granite:id="select-type"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Type :"
+                                                                    name="property-type">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <string
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="String"
+                                                                            value="1"/>
+                                                                        <binary
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Binary"
+                                                                            value="2"/>
+                                                                        <boolean
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Boolean"
+                                                                            value="6"/>
+                                                                        <date
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Date"
+                                                                            value="5"/>
+                                                                        <Decimal
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Decimal"
+                                                                            value="12"/>
+                                                                        <Double
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Double"
+                                                                            value="4"/>
+                                                                        <long
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Long"
+                                                                            value="3"/>
+                                                                        <name
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Name"
+                                                                            value="7"/>
+                                                                        <path
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Path"
+                                                                            value="8"/>
+                                                                        <reference
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Reference"
+                                                                            value="9"/>
+                                                                        <uri
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="URI"
+                                                                            value="11"/>
+                                                                        <weakreference
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="WearkReference"
+                                                                            value="10"/>
+                                                                    </items>
+                                                                </propertytype>
+                                                                <propertyvalue
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Value :"
+                                                                    name="property-value"/>
+                                                                <cont
+                                                                    granite:class="granite-popup-oper"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <add
+                                                                            granite:id="granite-popup-add"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/text"
+                                                                            name="add"
+                                                                            text="+"/>
+                                                                    </items>
+                                                                </cont>
+                                                                <counter
+                                                                    granite:id="add-counter"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                    name="counter"
+                                                                    value="0"/>
+                                                            </items>
+                                                        </add-section>
+                                                        <remove-section
+                                                            granite:class="granite-remove-section"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/fieldset"
+                                                            name="granite-remove-section">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <propertyname
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Name :"
+                                                                    name="remove-property-name"/>
+                                                                <cont
+                                                                    granite:class="granite-popup-oper"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <add
+                                                                            granite:id="granite-popup-rem"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/text"
+                                                                            name="add"
+                                                                            text="+"/>
+                                                                    </items>
+                                                                </cont>
+                                                                <counter
+                                                                    granite:id="rem-counter"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                    name="counterRem"
+                                                                    value="0"/>
+                                                            </items>
+                                                        </remove-section>
+                                                    </items>
+                                                    <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        foundation-validation-ui="none"/>
+                                                </column-properties>
+                                            </items>
+                                        </fixedcolumns>
+                                    </items>
+                                    <parentConfig jcr:primaryType="nt:unstructured">
+                                        <next
+                                            granite:class="foundation-wizard-control"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                            disabled="{Boolean}true"
+                                            text="Create"
+                                            type="submit"
+                                            variant="primary">
+                                            <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                foundation-wizard-control-action="next"/>
+                                        </next>
+                                    </parentConfig>
+                                </query>
+                            </items>
+                        </wizard>
+                    </items>
+                </form>
+                <popup
+                    granite:class="granite-explain-modal"
+                    granite:id="popup"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Query Explanation"
+                    sling:resourceType="granite/ui/components/coral/foundation/dialog"
+                    closable="{Boolean}false"
+                    variant="default">
+                    <items jcr:primaryType="nt:unstructured">
+                        <form
+                            granite:class="granite-execute-query"
+                            granite:comment="We set &quot;novalidate&quot; = true as the wizard is doing validation already, to avoid double validation"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form"
+                            foundationForm="{Boolean}false"
+                            maximized="{Boolean}true"
+                            novalidate="{Boolean}true"
+                            style="vertical">
+                            <items jcr:primaryType="nt:unstructured">
+                                <query
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Query"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <section
+                                            granite:id="granite-add-section"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <propertyname
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Name :"
+                                                    name="property-name"
+                                                    required="true"/>
+                                                <propertytype
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Type :"
+                                                    name="property-type"
+                                                    required="true">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <string
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="String"
+                                                            value="String"/>
+                                                        <binary
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Binary"
+                                                            value="Binary"/>
+                                                        <boolean
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Boolean"
+                                                            value="Boolean"/>
+                                                        <date
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Date"
+                                                            value="Date"/>
+                                                        <Decimal
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Decimal"
+                                                            value="Decimal"/>
+                                                        <Double
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Double"
+                                                            value="Double"/>
+                                                        <long
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Long"
+                                                            value="Long"/>
+                                                        <name
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Name"
+                                                            value="Name"/>
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Path"
+                                                            value="Path"/>
+                                                        <reference
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Reference"
+                                                            value="Reference"/>
+                                                        <uri
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="URI"
+                                                            value="URI"/>
+                                                        <weakreference
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="WearkReference"
+                                                            value="WearkReference"/>
+                                                    </items>
+                                                </propertytype>
+                                                <propertyvalue
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Value :"
+                                                    name="property-value"
+                                                    required="true"/>
+                                                <cont
+                                                    granite:class="granite-popup-oper"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <add
+                                                            granite:id="granite-popup-add"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/text"
+                                                            name="add"
+                                                            text="+"/>
+                                                        <remove
+                                                            granite:id="granite-popup-rem"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/text"
+                                                            name="remove"
+                                                            text="-"/>
+                                                    </items>
+                                                </cont>
+                                                <submit
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/button"
+                                                    text="Submit"
+                                                    type="submit"/>
+                                            </items>
+                                        </section>
+                                    </items>
+                                </query>
+                            </items>
+                        </form>
+                    </items>
+                </popup>
+            </items>
+        </body>
+    </jcr:content>
+</jcr:root>
