@@ -4,7 +4,7 @@
 <comment>AEM Sample Project :: Content Package</comment>
 <entry key="createdBy">user</entry>
 <entry key="name">aem-sample-project-package</entry>
-<entry key="created">2018-04-19T15:45:04.437+0100</entry>
+<entry key="created">2018-04-23T09:11:33.152+0100</entry>
 <entry key="groupId">net.distilledcode.aem.samples</entry>
 <entry key="version">1.0.0-SNAPSHOT</entry>
 <entry key="requiresRoot">false</entry>
