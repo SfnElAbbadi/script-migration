@@ -43,50 +43,22 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 	  	String propertyName = request.getParameter("property-name");
 	   	String propertyType = request.getParameter("property-type");
 	   	String propertyValue = request.getParameter("property-value");
-	   	int counter = Integer.parseInt( request.getParameter("counter") );
-		int counterRem = Integer.parseInt( request.getParameter("counterRem") );
 		String removePropertyName = request.getParameter("remove-property-name");
 	   	try {
 			nodesList = executeQuery(searchPath, querytype, query, request.getResourceResolver());
 			PrintWriter outprint = response.getWriter();
-			outprint.write("This is our counter's value "+counter);
+			outprint.write("This is our counter's value ");
 			outprint.write("</br>");
-			outprint.write("This is our counter's value "+counterRem);
-		   	if(counter == 0 && operation.equals("add-modify"))
+			outprint.write("This is our counter's value ");
+		   	if(operation.equals("add-modify"))
 		   		addModifyNodesProperty(nodesList, propertyName, propertyType, propertyValue, resourceResolver,outprint);
-		   	else if(counterRem == 0 && operation.equals("remove")){
-				outprint.write(counter);
+		   	else if(operation.equals("remove")){
 		        removeNodesProperty(nodesList, removePropertyName, resourceResolver,outprint);
-		   	}else if(counter>0 && operation.equals("add-modify")){
-
-		   		for (int j=0; j<counter; j++){
-		   	   		if(request.getParameter("name"+j)!=null){
-						 addModifyNodesProperty(nodesList, request.getParameter("name"+j), request.getParameter("type"+j), request.getParameter("value"+j), resourceResolver,outprint);
-		   	   			   outprint.write("This is from add-modify block");
-		   	   		}
-		   	   	}
-
-		   	}else if(counterRem>0 && operation.equals("remove")){
-		   		for (int j=0; j<counterRem; j++){
-		   	   		if(request.getParameter("name"+j)!=null){
-		   	   		   		removeNodesProperty(nodesList, request.getParameter("name"+j), resourceResolver,outprint);
-		   	   		}
-		   	   	}
-		   		int i = 1;
-		   		for(Node node : nodesList){
-		   		   		outprint.write("Node "+i+" :"+node.getPath());
-		   		   	   	outprint.write("</br>");
-		   		   	   	i++;
-		   		   	}
-
-		   		}
+		   	}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   	
-
-	   	}	
+	}	
 	   	
 
 	public java.util.List<Node> executeQuery(String searchpath, String querytype, String thequery, ResourceResolver resourceResolver) throws RepositoryException{

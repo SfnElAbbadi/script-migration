@@ -18,6 +18,10 @@
 
 /* Pop up css style  */
 
+.granite-execute-query .coral-Form-fieldwrapper:nth-child(6), 
+.granite-execute-query .coral-Form-fieldwrapper:nth-child(7){
+	display : none;
+}
 
 .granite-popup-oper{
 
