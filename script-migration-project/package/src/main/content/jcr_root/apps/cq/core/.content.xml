@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <content jcr:primaryType="nt:unstructured">
+        <nav jcr:primaryType="nt:unstructured">
+            <script
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Script query"
+                jcr:title_commentI18n="Capability Name"
+                desktopOnly="/welcome"
+                desktopOnlyTitle="Classic UI"
+                href="/apps/wcm/core/content/sites/script.html"
+                icon="page"
+                id="cq-script-page"
+                order="{Long}1000"/>
+        </nav>
+    </content>
+</jcr:root>
