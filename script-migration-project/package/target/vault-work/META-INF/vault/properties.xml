@@ -4,11 +4,7 @@
 <comment>AEM Sample Project :: Content Package</comment>
 <entry key="createdBy">user</entry>
 <entry key="name">aem-sample-project-package</entry>
-<<<<<<< Updated upstream
-<entry key="created">2018-04-23T09:11:33.152+0100</entry>
-=======
-<entry key="created">2018-04-23T11:41:53.450+0100</entry>
->>>>>>> Stashed changes
+<entry key="created">2018-04-24T17:43:25.385+0100</entry>
 <entry key="groupId">net.distilledcode.aem.samples</entry>
 <entry key="version">1.0.0-SNAPSHOT</entry>
 <entry key="requiresRoot">false</entry>

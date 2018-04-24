@@ -1,1 +1,7 @@
 net\distilledcode\aem\samples\core\QueryServlet.class
+net\distilledcode\aem\samples\core\Property.class
+QueryPackage\QueryInterface.class
+net\distilledcode\aem\samples\core\QueryLangage.class
+QueryPackage\Xpath.class
+QueryPackage\Sql2.class
+QueryPackage\Sql.class

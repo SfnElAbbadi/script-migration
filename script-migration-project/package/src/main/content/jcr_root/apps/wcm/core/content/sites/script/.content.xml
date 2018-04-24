@@ -52,7 +52,7 @@
                             value="${requestPathInfo.suffix}"/>
                         <wizard
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Create Page"
+                            jcr:title="Script page"
                             sling:resourceType="granite/ui/components/coral/foundation/wizard"
                             cancelHref="${empty header.Referer ? granite:concat(&quot;/sites.html&quot;, granite:encodeURIPath(requestPathInfo.suffix)) : header.Referer}">
                             <items jcr:primaryType="nt:unstructured">
@@ -71,7 +71,7 @@
                                                     <items jcr:primaryType="nt:unstructured">
                                                         <section
                                                             jcr:primaryType="nt:unstructured"
-                                                            jcr:title="SQL Query"
+                                                            jcr:title="Query"
                                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                                             <items jcr:primaryType="nt:unstructured">
                                                                 <search-path
