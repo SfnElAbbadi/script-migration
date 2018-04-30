@@ -1,22 +1,37 @@
 package net.distilledcode.aem.samples.core;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.jcr.Node;
 import javax.jcr.Session;
-
-
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-
 import QueryPackage.*;
 
+/**
+ * <b>QueryServlet is the class representing one of the functions of adding, modifying or removing the properties of the nodes.</b>
+ * <p>
+ * one of the features of this class is characterized by the following information :
+ * <ul>
+ * <li>searchPath to know well the path where we apply one of the features of this class.</li>
+ * <li>queryType It can be SQL, SQL2, XPath.</li>
+ * <li>query is the query that will select the specific nodes inside searchPath.</li>
+ * <li>operation it can be Add, Edit or Delete.</li>
+ * <li>names is an array of strings that contains the names of properties that can add or modify if already exists.</li>
+ * <li>types it can be String, Boolean, Decimal, etc.</li>
+ * <li>values is an array contains property values that can be added or changed if they already exist.</li>
+ * <li>RemValues is an array contains the names of properties that can be deleted</li>
+ * </ul>
+ * </p>
+ * 
+ * @see List
+ * @author AEM SQLI Oujda.
+ * @version 1.0
+ */
 
 @SlingServlet(	paths = "/bin/queryservlet",
 				extensions = "html",
@@ -27,20 +42,23 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 	private static final long serialVersionUID = 1L;
 	List<Node> nodesList = null;
 
-	
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException{
+		/**
+         * The resourceResolver defines the service API which may be used to resolve Resource objects.
+         */
 		ResourceResolver resourceResolver = request.getResourceResolver();
+		/**
+         * The session object provides read and write access to the content of a particular workspace in the repository.
+         */
 		Session session = resourceResolver.adaptTo(Session.class);
 		nodesList = new ArrayList();
-		PrintWriter out = response.getWriter();
 		
-		// Query parameters
 	   	String searchPath = request.getParameter("searchPath");
 	   	String queryType = request.getParameter("querytype");
 	   	String query = request.getParameter("query");
 	   	String operation = request.getParameter("operation");
-	   	// Retreiving data from multifield
+	   	
 		String[] names = request.getParameterValues("property-name");
 		String[] types = request.getParameterValues("property-type");
 		String[] values = request.getParameterValues("property-value");
@@ -49,28 +67,16 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 		QueryInterface queryInter = null;
 		QueryLangage queryLangage = new QueryLangage();
 	   	try {
-			
-	   		if(query.equals(null) && searchPath.equals(null)) {
-	   			query = "select * from [nt:unstructured]";
-	   			searchPath = "/content/we-retail/es/es";
-	   		}
-	   		
 		    queryInter = queryLangage.getLangageClass(queryType);
 		    nodesList = queryInter.executeQuery(searchPath, queryType, query, resourceResolver);
-			
 		   	if(operation.equals("add-modify"))
 		   		for(int i=0;i<names.length;i++)
 		   			queryInter.addModifyProperty(nodesList, names[i], types[i], values[i], resourceResolver);
 		   	else if(operation.equals("remove"))
 		   		for(int i=0;i<Remvalues.length;i++)
 		   			queryInter.removeProperty(nodesList, Remvalues[i], resourceResolver);
-		   	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	   	
 	}	
-	   	
-
-	
 }

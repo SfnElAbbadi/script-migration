@@ -5,9 +5,23 @@ import QueryPackage.Sql;
 import QueryPackage.Sql2;
 import QueryPackage.Xpath;
 
+/**
+ * <b>QueryLanguage is a calss that does the test on query type.</b>
+ * 
+ * @author AEM SQLI Oujda.
+ * @version 1.0
+ */
 public class QueryLangage {
 	
-	   //use getShape method to get object of type shape 
+	  // **************************************************
+      // Public methods
+      // **************************************************
+      /**
+       * return a new object with the content you have passed in the test if true.<br>
+       * 
+       * @param  queryType is the list contains SQL, SQL2 and XPath whose elements are tested.
+       * @return a new object with the content you have passed in the test if true.
+       */
 	   public QueryInterface getLangageClass(String queryType){
 	      if(queryType == null){
 	         return null;
@@ -21,7 +35,6 @@ public class QueryLangage {
 	      } else if(queryType.equalsIgnoreCase("XPATH")){
 	         return new Xpath();
 	      }
-	      
 	      return null;
 	   }
-	}
+}
