@@ -261,6 +261,14 @@
 									                                    </items>
 									                                </field>
                                    								 </remove-section>
+                                   								 <groupe-id
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/authorizable/autocomplete"
+                                                                    fieldDescription="Select Groupe ID"
+                                                                    fieldLabel="Groupe ID :"
+                                                                    name="groupeId"
+                                                                    required="true"
+                                                                    rootPath="/content"/>
                                                             </items>
                                                             <parentConfig jcr:primaryType="nt:unstructured">
                                                                 <next
