@@ -5,11 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.jcr.Node;
 import javax.jcr.Session;
+import javax.jcr.security.AccessControlManager;
+import javax.jcr.security.Privilege;
+
 import org.apache.felix.scr.annotations.sling.SlingServlet;
+
+import org.apache.jackrabbit.api.security.JackrabbitAccessControlList;
+import org.apache.jackrabbit.api.security.user.Authorizable;
+import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.jackrabbit.commons.jackrabbit.authorization.AccessControlUtils;
+import org.apache.jackrabbit.oak.spi.security.privilege.PrivilegeConstants;
+
+import org.apache.sling.jcr.base.util.AccessControlUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+
 import QueryPackage.*;
 
 /**
@@ -58,6 +70,7 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 	   	String queryType = request.getParameter("querytype");
 	   	String query = request.getParameter("query");
 	   	String operation = request.getParameter("operation");
+	   	String groupeId = request.getParameter("groupeId");
 	   	
 		String[] names = request.getParameterValues("property-name");
 		String[] types = request.getParameterValues("property-type");
@@ -76,6 +89,37 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 		   		for(int i=0;i<Remvalues.length;i++)
 		   			queryInter.removeProperty(nodesList, Remvalues[i], resourceResolver);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	   	
+	   	try {
+	   		if (session != null) {
+			    // Set ACLs
+			    final AccessControlManager accessControlManager = session.getAccessControlManager();
+			    final UserManager userManager = AccessControlUtil.getUserManager(session);
+			        if (userManager != null) {
+			            List<Privilege> allowPrivileges = new ArrayList<Privilege>(); 
+			            //Add rights
+			            allowPrivileges.add(accessControlManager.privilegeFromName(PrivilegeConstants.JCR_MODIFY_ACCESS_CONTROL));
+			            Privilege[] allowPrivilegesArray = new Privilege[allowPrivileges.size()];
+			            allowPrivilegesArray = allowPrivileges.toArray(allowPrivilegesArray);
+			            for(Node node:nodesList) {
+			            	//String test = node.getPath();
+			            	JackrabbitAccessControlList acl = AccessControlUtils.getAccessControlList(session, node.getPath());
+			                 if (acl != null) {
+			                    final Authorizable authorizableContentProducers = userManager.getAuthorizable(groupeId);
+			                    if (authorizableContentProducers != null) {
+			                    	acl.addEntry(authorizableContentProducers.getPrincipal(), allowPrivilegesArray, true);
+			                    }
+			                    accessControlManager.setPolicy(node.getPath(), acl);
+			                 }
+			            }
+			        }
+			        if (session.hasPendingChanges()) {
+			             session.save();
+			        }
+	   		}
+	   	} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}	
