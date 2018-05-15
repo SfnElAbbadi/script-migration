@@ -5,7 +5,7 @@
         <nav jcr:primaryType="nt:unstructured">
             <script
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Script query"
+                jcr:title="Script Migration"
                 jcr:title_commentI18n="Capability Name"
                 desktopOnly="/welcome"
                 desktopOnlyTitle="Classic UI"

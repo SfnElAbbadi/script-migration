@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1526035124491
+Bnd-LastModified: 1526385207047
 Build-Jdk: 1.8.0_161
 Built-By: user
 Bundle-Category: aem-samle-project
