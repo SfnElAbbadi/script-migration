@@ -1,0 +1,4 @@
+target/
+script-migration-project\bundles\core\target/
+.metadata/
+.idea/
