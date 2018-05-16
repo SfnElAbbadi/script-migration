@@ -16,12 +16,18 @@ import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.jackrabbit.commons.jackrabbit.authorization.AccessControlUtils;
 
 import org.apache.sling.jcr.base.util.AccessControlUtil;
+
+import notification.InboxNotification;
+import notification.InboxNotificationSender;
+import notification.impl.InboxNotificationImpl;
+import notification.impl.InboxNotificationSenderImpl;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 
-import QueryPackage.*;
+import queryPackage.QueryInterface;
 
 /**
  * <b>QueryServlet is the class representing one of the functions of adding, modifying or removing the properties of the nodes.</b>
@@ -130,5 +136,21 @@ public class QueryServlet extends SlingSafeMethodsServlet{
 	   	} catch (Exception e) {
 			e.printStackTrace();
 		}
+	   	
+	   	// Send Notification
+	   	
+	   	InboxNotificationSender inboxSender = new InboxNotificationSenderImpl();
+	   	InboxNotification inboxNotification = inboxSender.buildInboxNotification();
+	   	inboxNotification.setTitle("Operation done!");
+	   	inboxNotification.setMessage("Your have just modify a list of nodes!");
+	   	inboxNotification.setAssignee("Administrators");
+	   	inboxNotification.setContentPath("/crx/de");
+	   	try {
+			inboxSender.sendInboxNotification(resourceResolver, inboxNotification);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   	
 	}	
 }

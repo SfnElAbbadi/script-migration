@@ -286,6 +286,24 @@
                 <version>1.7.6</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+    <groupId>com.adobe.granite</groupId>
+    <artifactId>com.adobe.granite.taskmanagement.api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+		<dependency>
+		   <groupId>com.adobe.aem</groupId>
+		   <artifactId>uber-jar</artifactId>
+		   <version>6.2.0</version>
+		   <scope>provided</scope>
+		   <classifier>apis</classifier>
+		</dependency>
+		<dependency>
+    <groupId>com.adobe.granite</groupId>
+    <artifactId>com.adobe.granite.taskmanagement.core</artifactId>
+    <version>1.0.6</version>
+</dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -302,6 +320,8 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
+        
+        
     </pluginRepositories>
 
 </project>

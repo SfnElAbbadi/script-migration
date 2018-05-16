@@ -6,5 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/selabbadi/Downloads/com.adobe.granite.taskmanagement.api-1.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
