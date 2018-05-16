@@ -1,4 +1,4 @@
-package QueryPackage;
+package queryPackage;
 
 import java.util.List;
 import javax.jcr.Node;

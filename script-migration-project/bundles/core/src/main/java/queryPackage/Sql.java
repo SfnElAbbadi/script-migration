@@ -1,4 +1,4 @@
-package QueryPackage;
+package queryPackage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,12 @@ import javax.jcr.query.QueryResult;
 import org.apache.sling.api.resource.ResourceResolver;
 
 /**
- * Xpath is a class that implements QueryInterface and overrides their method. 
+ * Sql is a class that implements QueryInterface and overrides their method. 
  *
  * @author AEM SQLI.
  * @version 1.0
  */
-public class Xpath implements QueryInterface{
+public class Sql implements	QueryInterface{
 	
 	// **************************************************
     // executeQuery method
@@ -31,16 +31,19 @@ public class Xpath implements QueryInterface{
      * @return a list of nodes.
      */
 	public List<Node> executeQuery(String searchPath, String queryType, String theQuery, ResourceResolver resourceResolver) {
-		
 		List<Node> nodeList = new ArrayList();
 		Query q= null;
 		Session session = resourceResolver.adaptTo(Session.class);
 		QueryManager queryManager;
 		try {
 			queryManager = session.getWorkspace().getQueryManager();
-			if(queryType.equals("XPATH")){
-				   theQuery = ("/jcr:root").concat(searchPath).concat("/").concat(theQuery);
-				   q = queryManager.createQuery(theQuery,Query.XPATH);
+			if(queryType.equals("SQL")){
+				   if(theQuery.contains("where")){
+					   theQuery = theQuery.concat("/").concat(" and isdescendantnode('"+searchPath+"')");
+					}else {
+						theQuery = theQuery.concat(" where isdescendantnode('"+searchPath+"')");
+					}
+				   q = queryManager.createQuery(theQuery,Query.SQL);
 			}
 
 			QueryResult result = q.execute();
@@ -54,7 +57,7 @@ public class Xpath implements QueryInterface{
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return null;   
 	}
 	
 	// **************************************************
@@ -80,7 +83,7 @@ public class Xpath implements QueryInterface{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}		
+		}	
 	}
 	
 	// **************************************************
@@ -102,7 +105,7 @@ public class Xpath implements QueryInterface{
 			   		session.save();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}		   		
+				}	   		
 		   	}
 	}
 }

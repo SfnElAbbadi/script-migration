@@ -113,7 +113,28 @@
     <artifactId>oak-core</artifactId>
     <version>1.8.2</version>
 </dependency>
-		
+		<dependency>
+		    <groupId>biz.aQute.bnd</groupId>
+		    <artifactId>biz.aQute.bndlib</artifactId>
+		    <version>4.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.adobe.granite</groupId>
+		    <artifactId>com.adobe.granite.taskmanagement.core</artifactId>
+		    <version>1.0.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.adobe.granite</groupId>
+		    <artifactId>com.adobe.granite.taskmanagement.api</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+
     </dependencies>
 
 </project>

@@ -1,4 +1,4 @@
-package QueryPackage;
+package queryPackage;
 
 import java.util.ArrayList;
 import java.util.List;

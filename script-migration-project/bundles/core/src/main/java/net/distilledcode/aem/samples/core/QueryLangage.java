@@ -1,9 +1,9 @@
 package net.distilledcode.aem.samples.core;
 
-import QueryPackage.QueryInterface;
-import QueryPackage.Sql;
-import QueryPackage.Sql2;
-import QueryPackage.Xpath;
+import queryPackage.QueryInterface;
+import queryPackage.Sql;
+import queryPackage.Sql2;
+import queryPackage.Xpath;
 
 /**
  * <b>QueryLanguage is a calss that does the test on query type.</b>
